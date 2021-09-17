@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -55,5 +57,40 @@ public class DAO {
        }
        
        return total;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+    
+    
+    
+    public String CustAdd(String email, String fname, String contact, String password){
+        
+        String insert = "insert into customers values (?,?,?,?)";
+        int i = 0;
+        try {
+            pst = con.prepareStatement(insert);
+            pst.setString(1, email);
+            pst.setString(2, fname);
+            pst.setString(3,contact);
+            pst.setString(4, password);
+            i = pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        if(i>0){
+            
+            feedback = "success";
+        }
+        
+        else {
+            
+            feedback = "failed";
+        }
+        
+        return getFeedback();
     }
 }

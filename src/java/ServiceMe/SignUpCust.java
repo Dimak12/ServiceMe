@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SignUpCust extends HttpServlet {
 
-    
+    private String feedback = null;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +39,9 @@ public class SignUpCust extends HttpServlet {
         
         else if (checkbox == null){
             
-            out.print("welcome to login ");
+            DAO dao = new DAO("Plandi","Card@4817","service_me");
+            feedback = dao.CustAdd(email, fname, contact, password);
+            out.print(feedback);
         }
        
     }
