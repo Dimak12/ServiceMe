@@ -4,9 +4,25 @@
         <servlet-name>HouseCleaning</servlet-name>
         <servlet-class>ServiceMe.CalculateTotal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogIn</servlet-name>
+        <servlet-class>ServiceMe.LogIn</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Cust_SignUp</servlet-name>
+        <servlet-class>ServiceMe.CustSignUp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/LogIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cust_SignUp</servlet-name>
+        <url-pattern>/Cust_SignUp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
