@@ -46,7 +46,8 @@ public class DAO {
                bedPrice = rs.getDouble(2);
                bathPrice = rs.getDouble(3);
                total = living_kitchen + (Integer.parseInt(bedrooms)*bedPrice) + (Integer.parseInt(bathrooms)*bathPrice);
-             
+               
+               con.close();
            }
            
        }catch(SQLException e){

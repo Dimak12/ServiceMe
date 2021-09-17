@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PLANDI
  */
-public class HouseCleaning extends HttpServlet {
+public class CalculateTotal extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

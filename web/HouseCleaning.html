@@ -18,9 +18,9 @@ and open the template in the editor.
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-                
+               
             }
-            
+           
             .container{
                 display:grid;
                 grid-template-columns: 2fr 1fr;
@@ -29,6 +29,7 @@ and open the template in the editor.
                 height: 100vh;
                 grid-column-gap: 3px;
                 grid-row-gap: 3px;
+                
             }
             
             .nav{
@@ -356,7 +357,14 @@ and open the template in the editor.
                         <div class="location">
                             <label>Enter your location</label>
                             <div>
-                                
+                                <div>
+                                    <label>Unit & Apt Name</label>
+                                    <input type="text" name="apt" id="apt">
+                                </div>
+                                <div>
+                                    <label>Street</label>
+                                    <input type="text" name="street" id="street">
+                                </div>
                                 <select id="location" name="location" >
                                  <option value="Observatory">Observatory</option>
                                  <option value="Cape Town">Cape Town</option>
@@ -373,10 +381,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="info">
-                        <div id="info-duration">
-                            <label>Duration</label></br>
-                            <label id="durationlab">3hours</label>
-                        </div>
+                        
                         <div id="info-date">
                             <label>When</label></br>
                             <label id="timelab"></label>
@@ -392,6 +397,10 @@ and open the template in the editor.
                         <div id="info-total">
                             <label>Total</label></br>
                             <label id="totallab"></label>
+                        </div>
+                        <div>
+                            <p>Living room and Kitchen are already included</p></br>
+                            <p>Thank you for choosing us. Our aim is to meet our customers satisfaction.</p>
                         </div>
                         <button type="submit" id="find" class="find">Find an agent</button>
                         
@@ -410,7 +419,7 @@ and open the template in the editor.
                         date = $("#date").val(),
                         time = $("#time").val(),
                         location = $("#location").val();
-                    $.post("HouseCleaning",{
+                    $.post("CalculateTotal",{
                         bedrooms:bedrooms,
                         bathrooms:bathrooms,
                         date:date,
