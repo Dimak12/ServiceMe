@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PLANDI
  */
-public class CustSignUp extends HttpServlet {
+public class SignUpCust extends HttpServlet {
 
-   
-   
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,13 +34,15 @@ public class CustSignUp extends HttpServlet {
         
         if("checked".equals(checkbox)){
             
-            out.print("Provider page coming soon");
+            out.print("Provider page coming very soon");
         }
         
-        else if("null".equals(checkbox)){
+        else if (checkbox == null){
             
-            out.print("welcome to login");
+            out.print("welcome to login ");
         }
+       
     }
 
+   
 }

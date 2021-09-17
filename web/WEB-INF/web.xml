@@ -10,7 +10,15 @@
     </servlet>
     <servlet>
         <servlet-name>Cust_SignUp</servlet-name>
-        <servlet-class>ServiceMe.CustSignUp</servlet-class>
+        <servlet-class>ServiceMe.Sign</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Sign</servlet-name>
+        <servlet-class>ServiceMe.Sign</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUpCust</servlet-name>
+        <servlet-class>ServiceMe.SignUpCust</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>Cust_SignUp</servlet-name>
         <url-pattern>/Cust_SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sign</servlet-name>
+        <url-pattern>/Sign</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpCust</servlet-name>
+        <url-pattern>/SignUpCust</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
