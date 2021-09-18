@@ -40,8 +40,17 @@ public class SignUpCust extends HttpServlet {
         else if (checkbox == null){
             
             DAO dao = new DAO("Plandi","Card@4817","service_me");
-            feedback = dao.CustAdd(email, fname, contact, password);
-            out.print(feedback);
+            feedback = dao.custAdd(email, fname, contact, password);
+            
+            if(feedback == "success"){
+                
+                response.sendRedirect("SuccessfulSignUp.html");
+            }
+            
+            else if(feedback == "failed"){
+                
+                response.sendRedirect("NotsuccessfulPage.html");
+            }
         }
        
     }

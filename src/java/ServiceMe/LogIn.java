@@ -18,11 +18,41 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LogIn extends HttpServlet {
 
-   
+   private String feedback = null;
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        String email = request.getParameter("email");
+        String password = request.getParameter("Newpassword");
+        String checkbox = request.getParameter("LogInPro");
+        
+        if("checked".equals(checkbox)){
+            
+            out.print("provider view coming soon");
+        }
+        
+        else if (checkbox == null){
+            
+            DAO dao = new DAO("Plandi","Card@4817","service_me");
+            feedback = dao.logInCheck(email, password);
+            
+            if(feedback == "exists"){
+                
+                response.sendRedirect("index.html");
+            }
+            
+            else if(feedback == "notFound"){
+                
+                response.sendRedirect("NotsuccessfulPage.html");
+            }
+            //out.print(email + "" + password);
+        }
+        
         
     }
 

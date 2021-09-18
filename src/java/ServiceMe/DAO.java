@@ -65,9 +65,9 @@ public class DAO {
     
     
     
-    public String CustAdd(String email, String fname, String contact, String password){
+    public String custAdd(String email, String fname, String contact, String password){
         
-        String insert = "insert into customers values (?,?,?,?)";
+        String insert = "insert into customers(email,full_name,contact,password) values (?,?,?,?)";
         int i = 0;
         try {
             pst = con.prepareStatement(insert);
@@ -89,6 +89,31 @@ public class DAO {
         else {
             
             feedback = "failed";
+        }
+        
+        return getFeedback();
+    }
+    
+    public String logInCheck(String email, String password){
+        
+        String query = "select * from customers where email= ? and password= ? ";
+        try{
+            
+            pst = con.prepareStatement(query);
+            pst.setString(1, email);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+            
+            if(!rs.next()){
+                
+                feedback = "notFound";
+            }
+            
+            else{
+                feedback = "exists";
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
         }
         
         return getFeedback();
