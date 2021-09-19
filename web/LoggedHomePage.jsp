@@ -1,3 +1,10 @@
+<%-- 
+    Document   : LoggedHomePage
+    Created on : 18 Sep 2021, 5:10:37 PM
+    Author     : PLANDI
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -27,18 +34,29 @@ and open the template in the editor.
                 display: flex;
                 align-content: center;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-end;
                 flex-wrap: wrap;
                 
             }
             
             .logo{
+                margin-right:auto;
                 margin-left: 15px;
                 color: #fff;
                 font-family: "Sofia",sans-serif;
                 font-size: 30px;
                 font-weight: bold;
                 text-decoration: none;
+            }
+            
+            .menu .user {
+                
+                color: #fff;
+                text-decoration: none;
+                font-size: 20px;
+                font-family: Playfair Display,sans-serif;
+                padding: 0px 15px;
+                
             }
             
             .menu ul{
@@ -56,7 +74,7 @@ and open the template in the editor.
             }
             
             .menu ul li a{
-               color: #fff;
+                color: #fff;
                 text-decoration: none;
                 font-size: 20px;
                 font-family: Playfair Display,sans-serif;
@@ -100,6 +118,10 @@ and open the template in the editor.
             
             .fa{
                 margin-left: 5px;
+            }
+            
+            .fa-user{
+                margin-right: 5px;
             }
             
             .main{
@@ -177,25 +199,36 @@ and open the template in the editor.
                padding-left: 10px;
                pointer-events: none;
             }
+            
+            
             .show{
                 display: block;
             }
            
         </style>
     </head>
+    
+    <% 
+        session = request.getSession(false);
+        String email = session.getAttribute("email").toString(); 
+    %>
+    
     <body>
         <div class="menu">
+            
             <a href="#" class="logo">Service Me</a>
+            <a href="#" class="user" name="user" id="user"><i class="fa fa-user"></i><% out.print(email); %></i></a>
             <ul class="options">
+                
                 <li><a href="#" class="menu-item">Book A Service<i class="fa fa-caret-down"></i></a>
                     <div class="dropdown">
                         <ul>
-                            <li><a href="HouseCleaning.html" >House Cleaning</a></li>
+                            <li><a href="LoggedHouseCleaning.jsp" >House Cleaning</a></li>
                             <li><a href="#">Gardening</a></li>
                         </ul> 
                     </div>
                 </li>
-                <li><a href="SignUpPage.html" class="menu-item">Sign In</a></li>
+                <li><a href="LogOut" class="menu-item">Log Out</a></li>
             </ul>
         </div>
         <div class="main">
@@ -210,7 +243,7 @@ and open the template in the editor.
                 </button>
                 <div class="search-content" id="content">
                     <div class="links">
-                        <a href="HouseCleaning.html">House Cleaning</a>
+                        <a href="LoggedHouseCleaning.jsp">House Cleaning</a>
                         <a href="#">Gardening</a>
                         
                     </div>
@@ -234,3 +267,4 @@ and open the template in the editor.
         </script>
     </body>
 </html>
+

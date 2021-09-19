@@ -47,6 +47,11 @@ public class SignUpCust extends HttpServlet {
                 response.sendRedirect("SuccessfulSignUp.html");
             }
             
+            else if(feedback == "taken"){
+                
+                response.sendRedirect("UnsuccessfulSignUp.html");
+            }
+            
             else if(feedback == "failed"){
                 
                 response.sendRedirect("NotsuccessfulPage.html");

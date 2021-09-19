@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,7 +27,7 @@ public class LogIn extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("Newpassword");
         String checkbox = request.getParameter("LogInPro");
@@ -43,7 +44,9 @@ public class LogIn extends HttpServlet {
             
             if(feedback == "exists"){
                 
-                response.sendRedirect("index.html");
+                
+                session.setAttribute("email", email);
+                response.sendRedirect("LoggedHomePage.jsp");
             }
             
             else if(feedback == "notFound"){

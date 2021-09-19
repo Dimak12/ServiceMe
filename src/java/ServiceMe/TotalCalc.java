@@ -16,11 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PLANDI
  */
-public class CalculateTotal extends HttpServlet {
+public class TotalCalc extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         int price = 100;
         String bedrooms = request.getParameter("bedrooms");
@@ -32,7 +33,8 @@ public class CalculateTotal extends HttpServlet {
         
         PrintWriter out = response.getWriter();
         out.print(""+total);
-       
+        System.out.println("total is "+total);
+        //processRequest(request, response);
     }
 
 }

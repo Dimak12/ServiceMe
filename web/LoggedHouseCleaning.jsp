@@ -1,3 +1,10 @@
+<%-- 
+    Document   : LoggedHouseCleaning
+    Created on : 18 Sep 2021, 7:32:22 PM
+    Author     : PLANDI
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -36,9 +43,19 @@ and open the template in the editor.
                 grid-area: nav;
                 background-color: #34b3a0;
                 display: flex;
-                justify-content: space-between;
+                justify-content: right;
                 align-content: center;
                 
+            }
+            
+            .nav .user{
+                
+                color: #fff;
+                text-decoration: none;
+                font-size: 20px;
+                font-family: Playfair Display,sans-serif;
+                padding: 0px 15px;
+                align-self: center;
             }
             
              
@@ -52,6 +69,10 @@ and open the template in the editor.
                 
             }
             
+            .fa-user {
+                
+                margin-right:5px;
+            }
              
             .main{
                 grid-area: main;
@@ -83,6 +104,7 @@ and open the template in the editor.
                 justify-content: flex-start;
                 align-self:center;
                 margin-left: 15px;
+                margin-right: auto;
                 color: #fff;
                 font-family: "Sofia",sans-serif;
                 font-size: 30px;
@@ -379,11 +401,17 @@ and open the template in the editor.
           
         </style>
     </head>
+    
+    <% 
+        session = request.getSession(false);
+        String email = session.getAttribute("email").toString(); 
+    %>
     <body>
         <div class="container">
             <nav class="nav">
                 <a class="title" href="index.html">Service Me</a>
-                <a href="SignUpPage.html" class="logout">Sign In</a>
+                <a href="#" class="user" name="user" id="user"><i class="fa fa-user"></i><% out.print(email); %></i></a>
+                <a href="LogOut" class="logout">Log Out</a>
             
             </nav>
            
@@ -479,7 +507,7 @@ and open the template in the editor.
                             <p>Living room and Kitchen are already included</p></br>
                             <p>Thank you for choosing us. Our aim is to meet our customers satisfaction.</p>
                         </div>
-                        <button type="button" id="find" class="find">Find an agent</button>
+                        <button type="submit" id="find" class="find">Find an agent</button>
                         
                     </div>
                     
@@ -492,28 +520,6 @@ and open the template in the editor.
                $("#date").val(new Date().toISOString().slice(0,10)); 
                
             });
-            
-            $(document).ready(function(){
-               
-               $("#find").click(function(){
-                   
-                   var apt = $("#apt").val(),
-                       street =$("#street").val();
-                   
-                   if(apt === "" || street === ""){
-                            
-                            alert("Please ensure that every fields are filled out correctly");
-                    }
-                    
-                    else{
-                        
-                        alert("You are not logged in. Please login or sign up");
-                    }
-                    
-               });
-               
-            });
-            
             $(document).ready(function (){
                 
                 $("#proceed").click(function(){

@@ -57,7 +57,8 @@ and open the template in the editor.
                 border-radius: 10px;
             }
             .container::-webkit-scrollbar-thumb:hover {
-                background: green; 
+                background: #006666;
+                
             }
             .signup,
             .login{
@@ -138,16 +139,7 @@ and open the template in the editor.
                 background-color: transparent;
                 text-decoration: none;
             }
-            .nav>.nav-title  a:hover {
-                color: #009900;
-                background-color: transparent;
-                text-decoration: underline;
-            }
-            .nav>.nav-title a:active {
-                color:#fff;
-                background-color: transparent;
-                text-decoration: underline;
-            }
+            
             .nav > .nav-links {
                 font-size: 25px;
                 display: inline-block;
@@ -186,7 +178,7 @@ and open the template in the editor.
                 color: black;
             }
             .navbar a.active {
-                background-color: #04AA6D;
+                background-color: #34b3a0;
                 color: white;
             }
             .hr { 
@@ -338,7 +330,7 @@ and open the template in the editor.
     <body>
         <div class="nav">
             <div class="nav-title">
-                <a class="header" href="#">Service Me</a>
+                <a class="header" href="index.html">Service Me</a>
             </div>
             <div class="nav-links">
                 <div class="icon">
@@ -355,11 +347,11 @@ and open the template in the editor.
                 <form class="login-form" id="login-form" name="login-form" action="LogIn" method="post">
                     <p>
                         <label for="email"><i class="fa fa-envelope"></i> Email </label>
-                        <input  id="email" name="email" placeholder="Email" class="input">
+                        <input type="email" id="email" name="email" placeholder="Email" class="input" required>
                     </p>
                     <p>
                         <label for="password"><i class="fa fa-lock"></i> password</label>
-                        <input id="Newpassword" name="Newpassword" type="password" placeholder="Password" class="input required">
+                        <input id="Newpassword" name="Newpassword" type="password" placeholder="Password" class="input required" required>
                     </p>
                     <label>
                         <input type="checkbox"  name="LogInPro" id="LogInPro" value="checked"> Log In as Provider
@@ -372,23 +364,23 @@ and open the template in the editor.
                         <div class="item3">
                             <p>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="fname" placeholder="John M. Doe" class="input"></p>
+                                <input type="text" id="fname" name="fname" placeholder="John M. Doe" class="input" required></p>
                             <p><label for="email"><i class="fa fa-envelope"></i> Email </label>
-                                <input type="text" id="NewEmail" name="NewEmail" placeholder="john@example.com" class="input"></p>
+                                <input type="email" id="NewEmail" name="NewEmail" placeholder="john@example.com" class="input" required></p>
                             <p>
                             <P> <label for="Contact_number"><i class="fa fa-phone"></i>Contact Number</label>
-                                <input type="text" id="Contact_number" name="Contact_number" placeholder="+2776811..." class="input">
+                                <input type="text" id="Contact_number" name="Contact_number" placeholder="+2776811..." class="input" required>
 
                             </p>
                         </div>
                         <div class="item4" >
                             <p>
                                 <label for="password"><i class="fa fa-lock"></i> Password</label>
-                                <input id="password" name="password" type="password" placeholder="password" class="input required">
+                                <input id="password" name="password" type="password" placeholder="password" class="input required" required>
                             </p>
                             <p>
                                 <label for="ConPassword"> <i class="fa fa-lock"></i>Confirm Password</label>
-                                <input type="password" placeholder="ConPassword" name="ConPassword" id="ConPassword" class="input required" data-rule-equalTo="#password">
+                                <input type="password" placeholder="ConPassword" name="ConPassword" id="ConPassword" class="input required" data-rule-equalTo="#password" required>
                             </p>
 
 
@@ -405,7 +397,7 @@ and open the template in the editor.
             </div>
         </div>
         <div class="navbar">
-            <a href="#" class="active">HatimNouh1997@Gmail.com</a>
+            <a href="#" class="active">ServiceMe@gmail.com</a>
         </div>
     </body>
 </html>     

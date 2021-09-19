@@ -20,6 +20,22 @@
         <servlet-name>SignUpCust</servlet-name>
         <servlet-class>ServiceMe.SignUpCust</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Session</servlet-name>
+        <servlet-class>ServiceMe.Session</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Try</servlet-name>
+        <servlet-class>ServiceMe.Try</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>ServiceMe.LogOut</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TotalCalc</servlet-name>
+        <servlet-class>ServiceMe.TotalCalc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
@@ -39,6 +55,22 @@
     <servlet-mapping>
         <servlet-name>SignUpCust</servlet-name>
         <url-pattern>/SignUpCust</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Session</servlet-name>
+        <url-pattern>/Session</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Try</servlet-name>
+        <url-pattern>/Try</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TotalCalc</servlet-name>
+        <url-pattern>/TotalCalc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

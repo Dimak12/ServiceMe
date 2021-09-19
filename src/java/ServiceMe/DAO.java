@@ -68,27 +68,41 @@ public class DAO {
     public String custAdd(String email, String fname, String contact, String password){
         
         String insert = "insert into customers(email,full_name,contact,password) values (?,?,?,?)";
+        String query = "select * from customers where email= ?";
         int i = 0;
         try {
+            
+            PreparedStatement pstmnt = con.prepareStatement(query);
             pst = con.prepareStatement(insert);
+            pstmnt.setString(1, email);
             pst.setString(1, email);
             pst.setString(2, fname);
             pst.setString(3,contact);
             pst.setString(4, password);
-            i = pst.executeUpdate();
+            rs = pstmnt.executeQuery();
+            if(rs.next()){
+                
+                feedback = "taken";
+            }
+            
+            else{
+                
+                i = pst.executeUpdate();
+                
+                if(i>0){
+            
+                    feedback = "success";
+                }
+        
+                else {
+
+                    feedback = "failed";
+                }
+            }
+            
             
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        
-        if(i>0){
-            
-            feedback = "success";
-        }
-        
-        else {
-            
-            feedback = "failed";
         }
         
         return getFeedback();
