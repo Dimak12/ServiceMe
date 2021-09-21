@@ -4,6 +4,15 @@
     Author     : dj sean
 --%>
 
+<%@page import="ServiceMe.DAO"%>
+<%@page import="java.sql.*" %>
+
+<%
+    
+ResultSet rs;
+DAO dao;
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -97,7 +106,7 @@ and open the template in the editor.
                 margin: 0 50px;
                 -webkit-transform: none;
                 transform: none;
-                background: #f1c40f;
+                background: #1abc9c;
             }
             .card-slider{
                 margin: 60px auto;
@@ -124,24 +133,25 @@ and open the template in the editor.
             .container {
                 display: none;
                 position: absolute;
-                top: 80px;
+                top: 235px;
                 width: 100%;
                 line-height: 1em;
                 border-radius: 25px;
                 padding: 10px;
-                background: #1abc9c;
+                background: #ff9900;
+                    
 
-                color: #000000;
+                color: #fff;
                 border: 1px solid #1a1a1a;
                 font-size: 90%;
             }
-            .card:hover .container {
+            .column:hover .container {
                 opacity: 0.8;
                 display: block;
             }
             img{
                 width:100% ;
-                height: 100%;
+                height: 195px;
                 border-radius: 45px;
             }
             .checked {
@@ -200,37 +210,57 @@ and open the template in the editor.
         <script>
         </script>
     </head>
+    
+    <%
+        
+        session = request.getSession(false);
+        String email = session.getAttribute("email").toString(); 
+        String svc = session.getAttribute("svc").toString();
+    %>
+    
     <body>
         <div class="header">
             <a class=" title" href="#">Service Me</a>
         </div>
-        <form >
+        <form method="post" action="Booking">
 
             <div class="card-slider">
                 <div class="row">
+                    
+                    <%
+                        dao = new DAO("Plandi","Card@4817","service_me");
+                        rs = dao.agentList(svc);
+                        int i = 0;
+                        while(rs.next()){
+                        
+                    %>
 
-                    <input type="radio" id="i" name="sld" value=""/>
-                    <label for="i">
+                    <input type="radio" value=<% out.print(rs.getString("email")); %> name="agent" id= <% out.print(""+i); %>   />
+                    <label for=<% out.print(""+i); %>>
                         <div class="column">
                             <div class="card">
 
-                                <img src=" images/background5.JPG" alt="Jane">
-                                <h3>Jane Doe</h3>
+                                <img src= <% out.print(rs.getString("image")); %> alt=<% out.print(rs.getString("full_name")); %>
+                                     <h3><% out.print(rs.getString("full_name")); %></h3>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star"></span>
-                                <div class="container">
+                                
+                            </div>
+                                
+                            <div class="container">
 
-                                    <p>Some text that describes me lkbhhl4erfgfer abkonhbouihnoibhnouyhbnouyiboubo uyg uygb uybubi uy uygbuygiuygbiu ybiu y bu iuybiubiuybiuyb uborem ipsum ipsum lorem.</p>
-                                </div>
+                                    <p><% out.print(rs.getString("description"));%></p>
                             </div>
                         </div>
                     </label>
-
+                                <% i++; } 
+                    try{dao.getCon().close();}catch(SQLException e){e.printStackTrace();}
+                                %>
                     <hr>
-                    <button class="btn" type="submit" name="confi">Create account</button>
+                    <button class="btn" type="submit" name="confi">Pick Agent</button>
                 </div>
 
             </div>

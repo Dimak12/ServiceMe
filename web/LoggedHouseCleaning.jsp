@@ -422,7 +422,7 @@ and open the template in the editor.
                 </header>
             <main class="main">
                 
-                <form id="house" method="POST" action="TotalCalc">
+                <form id="house" method="POST" action="HCleaning">
                     <div class="details">
                         <div class="message"><h4>Enter the details of the service</h4></div>
                         <div class="bedroom">

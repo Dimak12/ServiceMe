@@ -7,6 +7,9 @@ package ServiceMe;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +38,7 @@ public class SignUpCust extends HttpServlet {
         
         if("checked".equals(checkbox)){
             
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             session.setAttribute("email", email);
             session.setAttribute("contact", contact);
             session.setAttribute("password", password);
@@ -44,22 +47,28 @@ public class SignUpCust extends HttpServlet {
         
         else if (checkbox == null){
             
-            DAO dao = new DAO("Plandi","Card@4817","service_me");
-            feedback = dao.custAdd(email, fname, contact, password);
-            
-            if(feedback == "success"){
+            try {
+                DAO dao = new DAO("Plandi","Card@4817","service_me");
+                feedback = dao.custAdd(email, fname, contact, password);
                 
-                response.sendRedirect("SuccessfulSignUp.html");
-            }
-            
-            else if(feedback == "taken"){
+                if(feedback == "success"){
+                    
+                    response.sendRedirect("SuccessfulSignUp.html");
+                }
                 
-                response.sendRedirect("UnsuccessfulSignUp.html");
-            }
-            
-            else if(feedback == "failed"){
+                else if(feedback == "taken"){
+                    
+                    response.sendRedirect("UnsuccessfulSignUp.html");
+                }
                 
-                response.sendRedirect("NotsuccessfulPage.html");
+                else if(feedback == "failed"){
+                    
+                    response.sendRedirect("NotsuccessfulPage.html");
+                }
+                
+                dao.getCon().close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         }
        

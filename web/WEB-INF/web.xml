@@ -44,6 +44,14 @@
         <servlet-name>SignUpAgent</servlet-name>
         <servlet-class>ServiceMe.SignUpAgent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HCleaning</servlet-name>
+        <servlet-class>ServiceMe.HCleaning</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Booking</servlet-name>
+        <servlet-class>ServiceMe.Booking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>SignUpAgent</servlet-name>
         <url-pattern>/SignUpAgent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HCleaning</servlet-name>
+        <url-pattern>/HCleaning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Booking</servlet-name>
+        <url-pattern>/Booking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

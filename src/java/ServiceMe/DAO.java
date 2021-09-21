@@ -212,4 +212,23 @@ public class DAO {
             //System.out.println(fname+" " + password+" "+email+" "+contact+ " "+ services+ " "+ description);
         return feedback;
     }
+        
+        public ResultSet agentList(String svc){
+            
+            String query = "select * from employees where services = ?";
+            
+             try {
+           
+            pst = con.prepareStatement(query);
+            pst.setString(1, svc);
+            rs = pst.executeQuery();
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+            
+            return rs;
+            
+        }
 }

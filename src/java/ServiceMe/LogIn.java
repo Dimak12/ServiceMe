@@ -7,6 +7,9 @@ package ServiceMe;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,21 +42,26 @@ public class LogIn extends HttpServlet {
         
         else if (checkbox == null){
             
-            DAO dao = new DAO("Plandi","Card@4817","service_me");
-            feedback = dao.logInCheck(email, password);
-            
-            if(feedback == "exists"){
+            try {
+                DAO dao = new DAO("Plandi","Card@4817","service_me");
+                feedback = dao.logInCheck(email, password);
                 
+                if(feedback == "exists"){
+                    
+                    session.setAttribute("email", email);
+                    response.sendRedirect("LoggedHomePage.jsp");
+                }
                 
-                session.setAttribute("email", email);
-                response.sendRedirect("LoggedHomePage.jsp");
+                else if(feedback == "notFound"){
+                    
+                    response.sendRedirect("NotsuccessfulPage.html");
+                }
+                
+                dao.getCon().close();
+                //out.print(email + "" + password);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-            
-            else if(feedback == "notFound"){
-                
-                response.sendRedirect("NotsuccessfulPage.html");
-            }
-            //out.print(email + "" + password);
         }
         
         
