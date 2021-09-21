@@ -164,7 +164,7 @@ public class DAO {
             
             String fileName = image.getSubmittedFileName();           
            
-            String location = "images/"+fileName;
+            String path = "images/"+fileName;
             InputStream is = image.getInputStream();
             Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
             
@@ -178,7 +178,7 @@ public class DAO {
             pst.setString(2,fname);
             pst.setString(3, password);
             pst.setString(4, contact);
-            pst.setString(5, location);
+            pst.setString(5, path);
             pst.setString(6, services);
             pst.setString(7, description);
             
