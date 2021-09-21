@@ -209,7 +209,7 @@ public class DAO {
             ex.printStackTrace();
         }
         
-            //System.out.println(fname+" " + password+" "+email+" "+contact+ " "+ services+ " "+ description);
+            
         return feedback;
     }
         

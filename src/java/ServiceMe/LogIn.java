@@ -58,7 +58,7 @@ public class LogIn extends HttpServlet {
                 }
                 
                 dao.getCon().close();
-                //out.print(email + "" + password);
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
