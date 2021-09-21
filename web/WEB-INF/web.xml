@@ -36,6 +36,14 @@
         <servlet-name>TotalCalc</servlet-name>
         <servlet-class>ServiceMe.TotalCalc</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpProvider</servlet-name>
+        <servlet-class>ServiceMe.SignUpProvider</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUpAgent</servlet-name>
+        <servlet-class>ServiceMe.SignUpAgent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>TotalCalc</servlet-name>
         <url-pattern>/TotalCalc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpProvider</servlet-name>
+        <url-pattern>/SignUpProvider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpAgent</servlet-name>
+        <url-pattern>/SignUpAgent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

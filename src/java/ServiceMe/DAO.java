@@ -1,6 +1,15 @@
 
 package ServiceMe;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -61,6 +71,10 @@ public class DAO {
 
     public String getFeedback() {
         return feedback;
+    }
+
+    public Connection getCon() {
+        return con;
     }
     
     
@@ -131,5 +145,71 @@ public class DAO {
         }
         
         return getFeedback();
+    }
+    
+        public String providerAdd(String email, String fname, String password, String contact,Part image,String description,String services, String uploadPath){
+        
+        
+        
+        String insert = "insert into employees (email,full_name,password,contact,image,services,description) values(?,?,?,?,?,?,?)";
+        String query = "select * from customers where email= ?";
+        int i = 0;
+        try{
+          
+        File dir = new File(uploadPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            
+            
+            String fileName = image.getSubmittedFileName();           
+           
+            String location = "images/"+fileName;
+            InputStream is = image.getInputStream();
+            Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
+            
+            
+            PreparedStatement pstmnt = con.prepareStatement(query);
+            pst = con.prepareStatement(insert);
+            
+            
+            pstmnt.setString(1, email);
+            pst.setString(1, email);
+            pst.setString(2,fname);
+            pst.setString(3, password);
+            pst.setString(4, contact);
+            pst.setString(5, location);
+            pst.setString(6, services);
+            pst.setString(7, description);
+            
+            
+            rs = pstmnt.executeQuery();
+            
+            if(rs.next()){
+                
+                feedback = "taken";
+            }
+            
+            else{
+                
+                i = pst.executeUpdate();
+                
+                if(i>0){
+            
+                    feedback = "success";
+                }
+        
+                else {
+
+                    feedback = "failed";
+                }
+            }
+            
+        }catch (SQLException|IOException  ex) {
+            ex.printStackTrace();
+        }
+        
+            //System.out.println(fname+" " + password+" "+email+" "+contact+ " "+ services+ " "+ description);
+        return feedback;
     }
 }

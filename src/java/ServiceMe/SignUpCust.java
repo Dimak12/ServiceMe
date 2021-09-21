@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,7 +35,11 @@ public class SignUpCust extends HttpServlet {
         
         if("checked".equals(checkbox)){
             
-            out.print("Provider page coming very soon");
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+            session.setAttribute("contact", contact);
+            session.setAttribute("password", password);
+            response.sendRedirect("ProviderDescription.html");
         }
         
         else if (checkbox == null){
