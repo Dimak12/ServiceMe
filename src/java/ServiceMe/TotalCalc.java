@@ -31,17 +31,17 @@ public class TotalCalc extends HttpServlet {
             HttpSession session = request.getSession(false);
             String bedrooms = request.getParameter("bedrooms");
             String bathrooms = request.getParameter("bathrooms");
-            /*String date = request.getParameter("date");
-            String time = request.getParameter("time");*/
+            
             DAO dao = new DAO("Plandi","Card@4817","service_me");
             String total = ""+dao.calculateTotal(bedrooms, bathrooms);
+            session.setAttribute("total", total);
             
             PrintWriter out = response.getWriter();
             out.print(""+total);
-            System.out.println("total is "+total);
+            
             dao.getCon().close();
             
-            //processRequest(request, response);
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

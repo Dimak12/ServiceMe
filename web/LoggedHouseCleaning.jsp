@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% 
+        session = request.getSession(false);
+        if(session.getAttribute("email")!=null){
+        
+        String email = session.getAttribute("email").toString(); 
+    %>
+    
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -402,14 +410,11 @@ and open the template in the editor.
         </style>
     </head>
     
-    <% 
-        session = request.getSession(false);
-        String email = session.getAttribute("email").toString(); 
-    %>
+    
     <body>
         <div class="container">
             <nav class="nav">
-                <a class="title" href="index.html">Service Me</a>
+                <a class="title" href="LoggedHomePage.jsp">Service Me</a>
                 <a href="#" class="user" name="user" id="user"><i class="fa fa-user"></i><% out.print(email); %></i></a>
                 <a href="LogOut" class="logout">Log Out</a>
             
@@ -560,3 +565,8 @@ and open the template in the editor.
         </script>
     </body>
 </html>
+<%}
+else{
+response.sendRedirect("SignUpPage.html");
+}
+%>

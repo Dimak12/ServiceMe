@@ -14,6 +14,14 @@ DAO dao;
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+        session = request.getSession(false);
+        if(session.getAttribute("email")!=null){
+        String email = session.getAttribute("email").toString(); 
+        String svc = session.getAttribute("svc").toString();
+        
+        
+    %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -22,19 +30,23 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Provider Description</title>
+        <title>Service Me - Booking | Select Agent</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .header {
-                font-family: "Sofia",sans-serif;
+                
                 padding: 5px;
                 background: #1abc9c;
                 box-shadow: 0 10px 15px #009999;
                 color: white;
                 border-radius: 20px;
+                display: flex;
+                justify-content: right;
+                align-content: center;
             }
             /* Increase the font size of the heading */
             .title {
@@ -43,11 +55,56 @@ and open the template in the editor.
                 font-size: 30px;
                 font-weight:600;
                 padding: 0px 10px 10px 10px;
+                justify-content: flex-start;
+                align-self:center;
+                margin-left: 15px;
+                margin-right: auto;
             }
             .title:link{
                 color: whitesmoke;
                 background-color: transparent;
                 text-decoration: none;
+            }
+            
+            .user{
+                
+                color: #fff;
+                text-decoration: none;
+                font-size: 20px;
+                font-family: Playfair Display,sans-serif;
+                padding: 0px 15px;
+                align-self: center;
+            }
+            .logout{
+                justify-content: flex-end;
+                padding: 10px  10px  10px  10px;
+                align-self: center;
+                align-items: center;
+                margin-right: 15px;
+                font-size: 20px;
+                font-family: Playfair Display,sans-serif;
+                
+                
+            }
+            
+            
+            .logout:link{
+                
+                color: white;
+                background-color: transparent;
+                text-decoration: none;
+               
+                
+            }
+            
+            .logout:visited{
+                
+                color: #fff;
+            }
+            .logout:hover{
+                
+                background: #006666;
+               
             }
             .footer {
                 padding: 5px;
@@ -68,10 +125,6 @@ and open the template in the editor.
                 display: inline-block;
                 width: 250px;
                 height: 400px;
-
-
-
-
 
             }
 
@@ -202,7 +255,7 @@ and open the template in the editor.
 
             }
             .btn:hover {
-                background-color: #45a049;
+                background-color: #006666;
             }
 
 
@@ -211,31 +264,30 @@ and open the template in the editor.
         </script>
     </head>
     
-    <%
-        
-        session = request.getSession(false);
-        String email = session.getAttribute("email").toString(); 
-        String svc = session.getAttribute("svc").toString();
-    %>
+    
     
     <body>
         <div class="header">
             <a class=" title" href="#">Service Me</a>
+            <a href="#" class="user" name="user" id="user"><i class="fa fa-user"></i><% out.print(email); %></i></a>
+            <a class=" logout" href="LogOut">Log Out</a>
+            
         </div>
-        <form method="post" action="Booking">
+        <form method="post" action="Agent">
 
             <div class="card-slider">
                 <div class="row">
                     
                     <%
                         dao = new DAO("Plandi","Card@4817","service_me");
+                        try{
                         rs = dao.agentList(svc);
                         int i = 0;
                         while(rs.next()){
                         
                     %>
 
-                    <input type="radio" value=<% out.print(rs.getString("email")); %> name="agent" id= <% out.print(""+i); %>   />
+                    <input type="radio" required value=<% out.print(rs.getString("email")); %> name="agent" id= <% out.print(""+i); %>  />
                     <label for=<% out.print(""+i); %>>
                         <div class="column">
                             <div class="card">
@@ -257,7 +309,7 @@ and open the template in the editor.
                         </div>
                     </label>
                                 <% i++; } 
-                    try{dao.getCon().close();}catch(SQLException e){e.printStackTrace();}
+                    dao.getCon().close();}catch(SQLException e){e.printStackTrace();}
                                 %>
                     <hr>
                     <button class="btn" type="submit" name="confi">Pick Agent</button>
@@ -266,9 +318,12 @@ and open the template in the editor.
             </div>
 
         </form>
-        <div class="footer">
-            <h2></h2>
-        </div>
+        
     </body>
 </html>
+<%}
+else{
+response.sendRedirect("SignUpPage.html");
+}
+%>
 

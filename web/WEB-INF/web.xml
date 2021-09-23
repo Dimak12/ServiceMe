@@ -52,6 +52,18 @@
         <servlet-name>Booking</servlet-name>
         <servlet-class>ServiceMe.Booking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>ServiceMe.NewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Agent</servlet-name>
+        <servlet-class>ServiceMe.Agent</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Banking</servlet-name>
+        <servlet-class>ServiceMe.Banking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
@@ -103,6 +115,18 @@
     <servlet-mapping>
         <servlet-name>Booking</servlet-name>
         <url-pattern>/Booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Agent</servlet-name>
+        <url-pattern>/Agent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Banking</servlet-name>
+        <url-pattern>/Banking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

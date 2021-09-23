@@ -30,7 +30,7 @@ public class LogIn extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+        
         String email = request.getParameter("email");
         String password = request.getParameter("Newpassword");
         String checkbox = request.getParameter("LogInPro");
@@ -47,7 +47,7 @@ public class LogIn extends HttpServlet {
                 feedback = dao.logInCheck(email, password);
                 
                 if(feedback == "exists"){
-                    
+                    HttpSession session = request.getSession(true);
                     session.setAttribute("email", email);
                     response.sendRedirect("LoggedHomePage.jsp");
                 }

@@ -59,7 +59,7 @@ public class DAO {
                bathPrice = rs.getDouble(3);
                total = living_kitchen + (Integer.parseInt(bedrooms)*bedPrice) + (Integer.parseInt(bathrooms)*bathPrice);
                
-               con.close();
+               
            }
            
        }catch(SQLException e){
@@ -217,6 +217,7 @@ public class DAO {
             
             String query = "select * from employees where services = ?";
             
+            
              try {
            
             pst = con.prepareStatement(query);
@@ -231,4 +232,92 @@ public class DAO {
             return rs;
             
         }
+        
+        public String booking(String customer, String agent, String bedrooms, String bathrooms, String date, String time, String apt, String street, String suburb, Double total){
+            
+                String insert = "insert into bookings(customer,agent,bedrooms,bathrooms,date,time,unit_and_apt,street,suburb,total) values(?,?,?,?,?,?,?,?,?,?)";
+                int i = 0;
+                
+            try{
+                pst = con.prepareStatement(insert); 
+                pst.setString(1,customer);
+                pst.setString(2,agent);
+                pst.setInt(3, Integer.parseInt(bedrooms));
+                pst.setInt(4, Integer.parseInt(bathrooms));
+                pst.setString(5, date);
+                pst.setString(6,time);
+                pst.setString(7,apt);
+                pst.setString(8,street);
+                pst.setString(9,suburb);
+                pst.setDouble(10,total);
+                
+                i = pst.executeUpdate();
+                
+                if(i>0){
+            
+                    feedback = "success";
+                }
+        
+                else {
+
+                    feedback = "failed";
+                }
+            
+            
+            }catch (SQLException ex) {
+                
+                ex.printStackTrace();
+        }
+            
+            
+            return feedback;
+        } 
+        
+        public String bankingCheck(Long card){
+            
+            String query = "select * from banking_details where card_number= ?";
+            try{
+                
+                pst = con.prepareStatement(query);
+                pst.setLong(1, card);
+                rs = pst.executeQuery();
+            
+                if(!rs.next()){
+
+                    feedback = "notFound";
+                }
+
+                else{
+                    feedback = "exists";
+                }
+                
+            }catch (SQLException ex) {
+                
+                ex.printStackTrace();
+            }
+            
+            return getFeedback();
+        }
+        
+        public void bankingAdd(String customer, Long card, int cvv, String country, String expiry, String type){
+            
+           String insert = "insert into banking_details(customer_email,card_number,expiry,cvv,country,type) values(?,?,?,?,?,?)"; 
+           
+           try{
+              pst = con.prepareStatement(insert);
+              pst.setString(1, customer);
+              pst.setLong(2, card);
+              pst.setString(3, expiry);
+              pst.setInt(4, cvv);
+              pst.setString(5, country);
+              pst.setString(6, type);
+              pst.executeUpdate();
+               
+           }catch (SQLException ex) {
+                
+                ex.printStackTrace();
+            }
+            
+        }
 }
+//STR_TO_DATE(?,\"%Y/%m/%d\")
