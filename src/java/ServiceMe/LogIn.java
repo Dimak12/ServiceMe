@@ -33,15 +33,7 @@ public class LogIn extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = request.getParameter("Newpassword");
-        String checkbox = request.getParameter("LogInPro");
-        
-        if("checked".equals(checkbox)){
-            
-            out.print("provider view coming soon");
-        }
-        
-        else if (checkbox == null){
-            
+       
             try {
                 DAO dao = new DAO("Plandi","Card@4817","service_me");
                 feedback = dao.logInCheck(email, password);
@@ -62,7 +54,7 @@ public class LogIn extends HttpServlet {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
+        
         
         
     }

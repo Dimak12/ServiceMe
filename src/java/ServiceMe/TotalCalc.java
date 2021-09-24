@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 public class TotalCalc extends HttpServlet {
     
-    HttpSession session = null;
+    private HttpSession session = null;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

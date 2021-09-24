@@ -50,7 +50,7 @@ public class Booking extends HttpServlet {
             Double total = Double.parseDouble(session.getAttribute("total").toString());
             
             Long card = Long.parseLong(request.getParameter("card"));
-            int cvv = Integer.parseInt(request.getParameter("cvc"));
+            int cvv = Integer.parseInt(request.getParameter("cvv"));
             String country = request.getParameter("country");
             String expiry = request.getParameter("expiry");
             String type = request.getParameter("pay");
@@ -93,7 +93,7 @@ public class Booking extends HttpServlet {
 
                     else if(feedback == "failed"){
 
-                        response.sendRedirect("NotsuccessfulPage.html");
+                        response.sendRedirect("UnsuccessfulPayment.html");
                     }
 
 

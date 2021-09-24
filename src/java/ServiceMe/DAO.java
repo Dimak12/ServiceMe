@@ -9,14 +9,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.Part;
 
 /**
@@ -42,25 +39,31 @@ public class DAO {
     
     public double calculateTotal(String bedrooms,String bathrooms){
         
+        
+        double [] price = new double[3];
         double living_kitchen;
         double bedPrice;
         double bathPrice;
         double total = 0;
+        int i = 0;
+        
        try{
            
-           String query = "select * from prices" ;
+           String query = "select * from cleaning_prices";
            pst = con.prepareStatement(query);
            rs = pst.executeQuery();
            
            while(rs.next()){
                
-               living_kitchen = rs.getDouble(1);
-               bedPrice = rs.getDouble(2);
-               bathPrice = rs.getDouble(3);
-               total = living_kitchen + (Integer.parseInt(bedrooms)*bedPrice) + (Integer.parseInt(bathrooms)*bathPrice);
-               
+               price [i] = rs.getDouble("price");
+               i++;
                
            }
+           
+           living_kitchen = price[0];
+           bedPrice = price[1];
+           bathPrice = price[2];
+           total = living_kitchen + (Integer.parseInt(bedrooms)*bedPrice) + (Integer.parseInt(bathrooms)*bathPrice);
            
        }catch(SQLException e){
           e.printStackTrace();
@@ -81,8 +84,8 @@ public class DAO {
     
     public String custAdd(String email, String fname, String contact, String password){
         
-        String insert = "insert into customers(email,full_name,contact,password) values (?,?,?,?)";
-        String query = "select * from customers where email= ?";
+        String insert = "insert into customers(customer_email,full_name,contact,password) values (?,?,?,?)";
+        String query = "select * from customers where customer_email= ?";
         int i = 0;
         try {
             
@@ -124,7 +127,7 @@ public class DAO {
     
     public String logInCheck(String email, String password){
         
-        String query = "select * from customers where email= ? and password= ? ";
+        String query = "select * from customers where customer_email= ? and password= ? ";
         try{
             
             pst = con.prepareStatement(query);
@@ -151,8 +154,8 @@ public class DAO {
         
         
         
-        String insert = "insert into employees (email,full_name,password,contact,image,services,description) values(?,?,?,?,?,?,?)";
-        String query = "select * from customers where email= ?";
+        String insert = "insert into employees (agent_email,full_name,password,contact,image,services,description) values(?,?,?,?,?,?,?)";
+        String query = "select * from employees where agent_email= ?";
         String path = null;
         int i = 0;
         try{
@@ -247,7 +250,7 @@ public class DAO {
         
         public String booking(String customer, String agent, String bedrooms, String bathrooms, String date, String time, String apt, String street, String suburb, Double total){
             
-                String insert = "insert into bookings(customer,agent,bedrooms,bathrooms,date,time,unit_and_apt,street,suburb,total) values(?,?,?,?,?,?,?,?,?,?)";
+                String insert = "insert into bookings(customer_email,agent_email,bedrooms,bathrooms,date,time,unit_and_apt,street,suburb,total) values(?,?,?,?,?,?,?,?,?,?)";
                 int i = 0;
                 
             try{
@@ -329,7 +332,74 @@ public class DAO {
                 
                 ex.printStackTrace();
             }
+           
+        
             
         }
+        
+        public double calcTotGarden(String footage){
+            
+            double total = 0;
+            
+            try{
+           
+           String query = "select * from garden_prices where footage = ?" ;
+           pst = con.prepareStatement(query);
+           pst.setString(1, footage);
+           rs = pst.executeQuery();
+           
+           while(rs.next()){
+              
+               total = rs.getDouble("price");
+           }
+           
+       }catch(SQLException e){
+          e.printStackTrace();
+       }
+            
+            return total;  
+               
+           }
+        
+        public String gardening_booking(String customer, String agent, String footage, String date, String time, String apt, String street, String suburb, Double total) {
+            
+            
+                String insert = "insert into gardening_bookings(customer_email,agent_email,footage,date,time,unit_and_apt,street,suburb,total) values(?,?,?,?,?,?,?,?,?)";
+                int i = 0;
+                
+            try{
+                pst = con.prepareStatement(insert); 
+                pst.setString(1,customer);
+                pst.setString(2,agent);
+                pst.setString(3, footage);
+                pst.setString(4, date);
+                pst.setString(5,time);
+                pst.setString(6,apt);
+                pst.setString(7,street);
+                pst.setString(8,suburb);
+                pst.setDouble(9,total);
+                
+                i = pst.executeUpdate();
+                
+                if(i>0){
+            
+                    feedback = "success";
+                }
+        
+                else {
+
+                    feedback = "failed";
+                }
+            
+            
+            }catch (SQLException ex) {
+                
+                ex.printStackTrace();
+        }
+            
+            
+            return feedback;
+    
+}
 }
 //STR_TO_DATE(?,\"%Y/%m/%d\")
