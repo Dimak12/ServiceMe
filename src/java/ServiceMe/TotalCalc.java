@@ -48,7 +48,16 @@ public class TotalCalc extends HttpServlet {
             }
             else{
                 
-                response.sendRedirect("SignUpPage.html");
+                String bedrooms = request.getParameter("bedrooms");
+                String bathrooms = request.getParameter("bathrooms");
+
+                DAO dao = new DAO("Plandi","Card@4817","service_me");
+                String total = ""+dao.calculateTotal(bedrooms, bathrooms);
+                PrintWriter out = response.getWriter();
+                out.print(""+total);
+                dao.getCon().close();
+                
+               // response.sendRedirect("SignUpPage.html");
             }
             
         } catch (SQLException ex) {
