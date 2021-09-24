@@ -153,20 +153,32 @@ public class DAO {
         
         String insert = "insert into employees (email,full_name,password,contact,image,services,description) values(?,?,?,?,?,?,?)";
         String query = "select * from customers where email= ?";
+        String path = null;
         int i = 0;
         try{
           
-        File dir = new File(uploadPath);
+            File dir = new File(uploadPath);
+            String fileName = image.getSubmittedFileName();   
+             
             if (!dir.exists()) {
                 dir.mkdirs();
             }
+             
+            
+            if(fileName.isEmpty()){
+                path = "https://i.ibb.co/ZVFsg37/default.png";
+            }
+            
+            else{
+                
+                path = "images/"+fileName;
+                InputStream is = image.getInputStream();
+                Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
+                
+                
+            }
             
             
-            String fileName = image.getSubmittedFileName();           
-           
-            String path = "images/"+fileName;
-            InputStream is = image.getInputStream();
-            Files.copy(is, Paths.get(uploadPath + File.separator + fileName), StandardCopyOption.REPLACE_EXISTING);
             
             
             PreparedStatement pstmnt = con.prepareStatement(query);

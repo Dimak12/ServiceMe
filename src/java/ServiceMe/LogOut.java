@@ -28,13 +28,13 @@ public class LogOut extends HttpServlet {
         HttpSession session = request.getSession(false);
         if(session!=null){
             session.invalidate();
-        response.sendRedirect("index.html");
+            response.sendRedirect("index.html");
             
         }
         
         else{
             
-            response.sendRedirect("SignUpPage.html");
+            response.sendRedirect("index.html");
         }
         
         

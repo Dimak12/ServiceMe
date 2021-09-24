@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
  * @author PLANDI
  */
 public class HCleaning extends HttpServlet {
+    
+    private HttpSession session = null;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +34,7 @@ public class HCleaning extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession(false);
+        session = request.getSession(false);
         
         String svc = "cleaner";
         String bedrooms = request.getParameter("bedrooms");
@@ -43,16 +45,25 @@ public class HCleaning extends HttpServlet {
         String street = request.getParameter("street");
         String suburb = request.getParameter("location");
         
-        session.setAttribute("bedrooms", bedrooms);
-        session.setAttribute("bathrooms", bathrooms);
-        session.setAttribute("date", date);
-        session.setAttribute("time",time);
-        session.setAttribute("apt", apt);
-        session.setAttribute("street", street);
-        session.setAttribute("suburb", suburb);
-        session.setAttribute("svc", svc);
+        if(session != null){
+            
+            session.setAttribute("bedrooms", bedrooms);
+            session.setAttribute("bathrooms", bathrooms);
+            session.setAttribute("date", date);
+            session.setAttribute("time",time);
+            session.setAttribute("apt", apt);
+            session.setAttribute("street", street);
+            session.setAttribute("suburb", suburb);
+            session.setAttribute("svc", svc);
+
+            response.sendRedirect("ListEmployee.jsp");
+            
+        }
         
-        response.sendRedirect("ListEmployee.jsp");
+        else{
+            
+            response.sendRedirect("SignUpPage.html");
+        }
         
         
     }

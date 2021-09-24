@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
  * @author PLANDI
  */
 public class TotalCalc extends HttpServlet {
+    
+    HttpSession session = null;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -28,19 +30,26 @@ public class TotalCalc extends HttpServlet {
         
         try {
             response.setContentType("text/html;charset=UTF-8");
-            HttpSession session = request.getSession(false);
-            String bedrooms = request.getParameter("bedrooms");
-            String bathrooms = request.getParameter("bathrooms");
+            session = request.getSession(false);
             
-            DAO dao = new DAO("Plandi","Card@4817","service_me");
-            String total = ""+dao.calculateTotal(bedrooms, bathrooms);
-            session.setAttribute("total", total);
+            if(session != null){
+                
+                String bedrooms = request.getParameter("bedrooms");
+                String bathrooms = request.getParameter("bathrooms");
+
+                DAO dao = new DAO("Plandi","Card@4817","service_me");
+                String total = ""+dao.calculateTotal(bedrooms, bathrooms);
+                session.setAttribute("total", total);
+
+                PrintWriter out = response.getWriter();
+                out.print(""+total);
+                dao.getCon().close();
             
-            PrintWriter out = response.getWriter();
-            out.print(""+total);
-            
-            dao.getCon().close();
-            
+            }
+            else{
+                
+                response.sendRedirect("SignUpPage.html");
+            }
             
         } catch (SQLException ex) {
             ex.printStackTrace();

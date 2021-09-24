@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 public class SignUpCust extends HttpServlet {
 
     private String feedback = null;
+    private HttpSession session = null;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,7 +39,7 @@ public class SignUpCust extends HttpServlet {
         
         if("checked".equals(checkbox)){
             
-            HttpSession session = request.getSession(false);
+            session = request.getSession();
             session.setAttribute("email", email);
             session.setAttribute("contact", contact);
             session.setAttribute("password", password);
