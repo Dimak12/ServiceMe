@@ -230,7 +230,7 @@ and open the template in the editor.
                     <div class="dropdown">
                         <ul>
                             <li><a href="LoggedHouseCleaning.jsp" >House Cleaning</a></li>
-                            <li><a href="#">Gardening</a></li>
+                            <li><a href="LoggedInGardening.jsp">Gardening</a></li>
                         </ul> 
                     </div>
                 </li>
@@ -250,7 +250,7 @@ and open the template in the editor.
                 <div class="search-content" id="content">
                     <div class="links">
                         <a href="LoggedHouseCleaning.jsp">House Cleaning</a>
-                        <a href="#">Gardening</a>
+                        <a href="LoggedInGardening.jsp">Gardening</a>
                         
                     </div>
                     

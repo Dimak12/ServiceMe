@@ -64,6 +64,22 @@
         <servlet-name>Banking</servlet-name>
         <servlet-class>ServiceMe.Banking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GardeningTot</servlet-name>
+        <servlet-class>ServiceMe.GardeningTot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Gardening</servlet-name>
+        <servlet-class>ServiceMe.Gardening</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingGardening</servlet-name>
+        <servlet-class>ServiceMe.BookingGardening</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GardeningBooking</servlet-name>
+        <servlet-class>ServiceMe.GardeningBooking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HouseCleaning</servlet-name>
         <url-pattern>/HouseCleaning</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>Banking</servlet-name>
         <url-pattern>/Banking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GardeningTot</servlet-name>
+        <url-pattern>/GardeningTot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Gardening</servlet-name>
+        <url-pattern>/Gardening</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingGardening</servlet-name>
+        <url-pattern>/BookingGardening</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GardeningBooking</servlet-name>
+        <url-pattern>/GardeningBooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

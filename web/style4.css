@@ -1,0 +1,182 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22 sept. 2021, 19:14:52
+    Author     : DIDIE
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background: radial-gradient(silver,white);
+    box-sizing: border-box;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 20px;
+}
+nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+p{
+    color: black; 
+}
+container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col_2{
+    padding: 20px;
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col_2 img{
+    max-width: 70%;
+    padding: 50px 0;
+    opacity: 40%;
+}
+.col_2 h1{
+    
+    font-size: 40px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+.gardens{
+    margin: 70px;
+}
+.col_3{
+    flex-basis: 30%;
+    min-width:250px;
+    margin-bottom: 30px;
+    transition: transform 0.5s;
+}
+.col_3 img{
+    width: 100%;
+    border-radius: 15px;
+}
+.inner-container{
+    display: flex;
+    justify-content: flex-start;
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.title{
+    text-align: center;
+}
+.inner-container p{
+    color: white;
+    text-align: left;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.display{
+    min-width: 400px;;
+    flex: 5;
+    border-radius: 10%;
+    border-style:  ridge;
+    border-color: #34b3a0;
+    position: fixed;
+    left: 70%;
+    top: 350px;
+    text-align: center;
+    margin: 10px auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: gray;
+    font-family: sans-serif;
+    color: white;
+    opacity: 80%;
+    
+}
+.footer{
+    margin: 100px auto;
+}
+.col_4{
+    width: 160px;
+}
+.col_4 img{
+    width: 100%;
+    cursor: pointer;
+    filter:grayscale(100%);
+}
+.col_4 img:hover{
+    
+    filter:grayscale(0);
+}
+.confirm input{
+    border-color: white;
+    background-color: #34b3a0;
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+}
+.confirm{
+    text-align: center;
+}
+.submit input{
+    background-color: #34b3a0;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+   width: 200px;
+    height: 30px;
+}
+
+.dt input{
+    border-color: gray;
+   
+    
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+}
+.dt select {
+     border-style: solid;
+    border-color:gray;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+   
+}
+
+.fa-user {
+                
+                margin-right:5px;
+            }

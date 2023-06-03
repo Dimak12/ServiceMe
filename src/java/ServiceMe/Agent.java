@@ -39,12 +39,12 @@ public class Agent extends HttpServlet {
             
             String agent = request.getParameter("agent");
             session.setAttribute("agent", agent);
-            response.sendRedirect("BillingPage.html");
+            response.sendRedirect("BillingPage.jsp");
         }
         
         else{
             
-            response.sendRedirect("SignUpPage.html");
+            response.sendRedirect("BillingPage.jsp");
         }
         
         

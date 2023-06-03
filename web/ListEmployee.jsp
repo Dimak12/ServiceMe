@@ -287,7 +287,7 @@ and open the template in the editor.
                         
                     %>
 
-                    <input type="radio" required value=<% out.print(rs.getString("email")); %> name="agent" id= <% out.print(""+i); %>  />
+                    <input type="radio" required value=<% out.print(rs.getString("agent_email")); %> name="agent" id= <% out.print(""+i); %>  />
                     <label for=<% out.print(""+i); %>>
                         <div class="column">
                             <div class="card">
